@@ -1,0 +1,74 @@
+Questions 
+
+1.Show all flight details
+Query - SELECT * FROM flights;
+2.Get all unique airlines
+Query - SELECT DISTINCT airline FROM flights;
+3.Find flights from Delhi
+Query - SELECT * FROM flights
+        WHERE source_city = 'Delhi';
+4.Find flights with ticket price > 5000
+Query - SELECT * FROM flights
+        WHERE price > 5000;
+5.Sort flights by price (low → high)
+Query - SELECT * FROM flights
+        ORDER BY price ASC;
+6.Count total number of flights
+Query -SELECT COUNT(*) FROM flights;
+7.Find average ticket price
+Query - SELECT AVG(price) FROM flights;
+8.Find number of flights per airline
+Query - SELECT airline, COUNT(*) 
+        FROM flights
+        GROUP BY airline;
+9.Find maximum and minimum price
+Query - SELECT MAX(price), MIN(price) FROM flights;
+10.Find flights with no stops (direct flights)
+Query - SELECT * FROM flights
+        WHERE stops = 0;
+11.Find cheapest flight for each airline
+Query - SELECT airline, MIN(price) AS cheapest_price
+        FROM flights
+        GROUP BY airline;
+12.Find most expensive flight for each route
+Query - SELECT source_city, destination_city, MAX(price)
+        FROM flights
+        GROUP BY source_city, destination_city;
+13.Find top 5 most expensive flights
+Query - SELECT * FROM flights
+        ORDER BY price DESC
+        LIMIT 5;
+14.Find flights where duration > average duration
+Query - SELECT * FROM flights
+        WHERE duration > (SELECT AVG(duration) FROM flights);
+15.Count flights by class (Economy/Business)
+Query - SELECT class, COUNT(*)
+        FROM flights
+        GROUP BY class;
+16.Which airline has the highest average ticket price?
+Query - SELECT airline, AVG(price) AS avg_price
+        FROM flights
+        GROUP BY airline
+        ORDER BY avg_price DESC
+        LIMIT 1;
+17.Find busiest route (most flights between cities)
+Query - SELECT source_city, destination_city, COUNT(*) AS total_flights
+        FROM flights
+        GROUP BY source_city, destination_city
+        ORDER BY total_flights DESC
+        LIMIT 1;
+18.Find price difference between business and economy class
+Query - SELECT class, AVG(price)
+        FROM flights
+        GROUP BY class;
+19.Find flights departing in morning with price < 6000
+Query - SELECT *
+        FROM flights
+        WHERE departure_time = 'Morning'
+        AND price < 6000;
+20.Find airline with maximum number of flights
+Query - SELECT airline, COUNT(*) AS total_flights
+        FROM flights
+        GROUP BY airline
+        ORDER BY total_flights DESC
+        LIMIT 1;
